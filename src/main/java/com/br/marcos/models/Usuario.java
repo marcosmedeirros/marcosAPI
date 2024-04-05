@@ -1,5 +1,6 @@
 package com.br.marcos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -82,8 +83,9 @@ public class Usuario {
         return Objects.hash(id, username, password);
     }
 
+    @JsonIgnore
     public List<Task> getTasks() {
-        return tasks;
+        return this.tasks;
     }
 
     public void setTasks(List<Task> tasks) {
