@@ -20,6 +20,7 @@ public class Task {
     @ManyToOne //chave estrangeira, onde ele pode ter varias tarefas
     @JoinColumn(name = "usuario_id", nullable = false, unique = false)
     private Usuario usuario;
+
     @Column(name = "descricao", nullable = false, length = 200)
     @NotNull
     @NotEmpty
