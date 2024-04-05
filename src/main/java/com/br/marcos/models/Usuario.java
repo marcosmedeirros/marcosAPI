@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,7 +33,8 @@ public class Usuario {
     @Size(min = 5, max = 60)
     private String password;
 
-    //private List<Task> tasks = new ArrayList<Task>();
+    @OneToMany(mappedBy = "usuario")
+    private List<Task> tasks = new ArrayList<Task>();
 
     public Usuario() {
     }
@@ -77,5 +80,13 @@ public class Usuario {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, password);
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }
