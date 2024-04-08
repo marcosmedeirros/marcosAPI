@@ -15,6 +15,8 @@ import java.util.Objects;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+    public interface CreateUsuario {}
+    public interface UpdateUsuario {}
     public static final String TABLE_NAME = "usuario";
 
     @Id
@@ -23,15 +25,15 @@ public class Usuario {
     private Long id;
 
     @Column(name = "username", nullable = false, length = 100, unique = true)
-    @NotNull
-    @NotEmpty
-    @Size(min = 5, max = 100)
+    @NotNull(groups = CreateUsuario.class)
+    @NotEmpty(groups = CreateUsuario.class)
+    @Size(groups = CreateUsuario.class,min = 5, max = 100)
     private String username;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password", nullable = false, length = 50)
-    @NotNull
-    @NotEmpty
-    @Size(min = 5, max = 60)
+    @NotNull(groups = {CreateUsuario.class, UpdateUsuario.class})
+    @NotEmpty(groups = {CreateUsuario.class, UpdateUsuario.class})
+    @Size(groups = {CreateUsuario.class, UpdateUsuario.class}, min = 5, max = 60)
     private String password;
 
     @OneToMany(mappedBy = "usuario")
