@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.PublicKey;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,12 @@ public class TaskService {
         Optional<Task> task = this.taskRepositorio.findById(id);
         return task.orElseThrow(() -> new RuntimeException("Tarefa não encontrada, seu id: " + id));
     }
+
+    public List<Task> findAllByUsuarioId(Long Usuario_Id) {
+        List<Task> tasks = this.taskRepositorio.findByUsuario_Id(Usuario_Id);
+        return tasks;
+    }
+
 
     @Transactional
     public Task create(Task t) {
