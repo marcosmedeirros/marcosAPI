@@ -7,7 +7,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.PublicKey;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +24,8 @@ public class TaskService {
         return task.orElseThrow(() -> new RuntimeException("Tarefa não encontrada, seu id: " + id));
     }
 
-    public List<Task> findAllByUsuarioId(Long Usuario_Id) {
-        List<Task> tasks = this.taskRepositorio.findByUsuario_Id(Usuario_Id);
+    public List<Task> findAllByUsuario_Id(Long usuario_Id) {
+        List<Task> tasks = this.taskRepositorio.findByUsuario_Id(usuario_Id);
         return tasks;
     }
 
